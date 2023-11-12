@@ -1,4 +1,4 @@
-import TypesOfWeather from "./weather";
+import TypesOfWeather from "./weatherTypes";
 
 interface WeatherDescriptionProps {
     main: TypesOfWeather
@@ -8,11 +8,12 @@ interface WeatherBasicDataProps {
     temp: string
 }
 
-interface ForecastProps {
+interface Forecast {
     dt: number;
+    dt_txt: string;
     date: Date;
     weather: Array<WeatherDescriptionProps>;
-    main: WeatherBasicDataProps
+    main: WeatherBasicDataProps;
 }
 
-export default ForecastProps
+export default Forecast

@@ -1,11 +1,9 @@
 import * as dayjs from 'dayjs'
 import './styles.less'
-import ForecastProps from '../../types/forecastedDay';
+import ForecastProps from '../../types/forecastedDayType';
 import getWeatherGraphic from '../../functions/getWeatherType';
 
-function ForecastedDay(props: ForecastProps) {
-    const { dt, date, main, weather } = props;
-
+function ForecastedDay({ dt, date, main, weather }: ForecastProps) {
     return (
         <div className="forecasted-day" key={dt}>
             <span className="day-label">
@@ -23,7 +21,6 @@ function ForecastedDay(props: ForecastProps) {
 
 function getFormattedDate(dateString: Date) {
     return dayjs(dateString).format('ddd');
-    // .format('YYYY-MM-DD')
 }
 
 export default ForecastedDay

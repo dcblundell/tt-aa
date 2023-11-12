@@ -1,7 +1,7 @@
 
 import getWeatherGraphic from "../../functions/getWeatherType";
 import { useAppContext } from "../../hooks/AppContextProvider"
-import { Forecast } from "../../types/weatherData";
+import forecastedDayType from "../../types/forecastedDayType";
 import ForecastedDay from "../ForecastedDay";
 import './styles.less'
 
@@ -13,45 +13,46 @@ END_DATE.setDate(END_DATE.getDate() + MAX_DAY_FORECAST);
 function WeatherContainer() {
     const { weatherData } = useAppContext();
 
-    console.log(weatherData)
+    if (!weatherData) {
+        return
+    }
 
-    const daysForecast = weatherData?.forecast?.list?
-        .reduce((filteredData: Array<Forecast>, currentDay: Forecast) => {
-            currentDay = {
-                ...currentDay,
-                date: new Date(currentDay.dt_txt)
-            }
+    console.log('weatherData', weatherData)
 
-            if (currentDay.date.getDate() !== TODAYS_DATE.getDate() &&
-                currentDay.date < END_DATE &&
-                !filteredData.some(day => day.date.getDate() === currentDay.date.getDate())
-            ) {
-                filteredData.push(currentDay)
-            }
+    const daysForecast: Array<forecastedDayType> = weatherData.forecast.reduce((filteredData: Array<forecastedDayType>, currentDay: forecastedDayType) => {
+        currentDay = {
+            ...currentDay,
+            date: new Date(currentDay.dt_txt)
+        }
 
-            return filteredData
-        }, [])
+        if (currentDay.date.getDate() !== TODAYS_DATE.getDate() &&
+            currentDay.date < END_DATE &&
+            !filteredData.some(day => day.date.getDate() === currentDay.date.getDate())
+        ) {
+            filteredData.push(currentDay)
+        }
 
-    // console.log(daysForecast)
+        return filteredData
+    }, []);
+
+    console.log('daysForecast', daysForecast)
 
     return (
         <section className="weather-container">
             <>
-              {weatherData.today && (
-                <div className="today">
-                    <div className="today-title">Today</div>
-                    <figure className="weather">
-                        {getWeatherGraphic(weatherData.today.description)}
-                        <figcaption className="report">
-                            <span className="temperature">{weatherData.today.temperature}&#176;</span>
-                            <span className="description">{weatherData.today.description}</span>
-                        </figcaption>
-                    </figure>
-                </div>
-              )}
+            <div className="today">
+                <div className="today-title">Today</div>
+                <figure className="weather">
+                    {getWeatherGraphic(weatherData.today.description)}
+                    <figcaption className="report">
+                        <span className="temperature">{weatherData.today.temperature}&#176;</span>
+                        <span className="description">{weatherData.today.description}</span>
+                    </figcaption>
+                </figure>
+            </div>
 
-              {daysForecast?.length && (
-                daysForecast.map(forecast => <ForecastedDay forecast={forecast} key={forecast.dt}/>)
+              {daysForecast.length && (
+                daysForecast.map(day => <ForecastedDay {...day} key={day.dt}/>)
               )}
             </>
         </section>

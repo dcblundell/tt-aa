@@ -1,6 +1,6 @@
 import classNames from "classnames";
 import { useAppContext } from '../../hooks/AppContextProvider';
-import City from "../../types/city";
+import City from "../../types/cityType";
 import './styles.less';
 
 interface CityButtonProps {

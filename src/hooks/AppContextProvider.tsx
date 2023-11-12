@@ -1,8 +1,8 @@
 import { createContext, useState, useContext, useEffect, PropsWithChildren } from 'react';
 import { DEFAULT_CITY } from '../definitions/cities';
 import getWeatherForCity from '../functions/getWeatherForCity';
-import City from '../types/city';
-import AppContextState from '../types/appContextState';
+import City from '../types/cityType';
+import AppContextState from '../types/appContextStateType';
 
 
 interface AppContextProps {

@@ -2,7 +2,7 @@ import { FC } from 'react';
 import Clouds from "../components/Icons/Clouds";
 import Rain from "../components/Icons/Rain";
 import Sun from "../components/Icons/Sun";
-import TypesOfWeather from '../types/weather';
+import TypesOfWeather from '../types/weatherTypes';
 
 const WEATHER_TYPE_GRAPHICS = {
     'Clear': Sun,
