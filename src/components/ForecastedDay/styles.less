@@ -1,0 +1,34 @@
+@import "../../styles/definitions/colours.less";
+@import "../../styles/definitions/fonts.less";
+
+.forecasted-day {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    border-left: 0.25rem solid @white;
+    border-right: 0.25rem solid @white;
+
+    padding-top: 1.5rem;
+
+    &:last-child {
+        border-right: 0;
+    }
+
+    > .day-label {
+        font-size: 2rem;
+    }
+
+    > .temperature {
+        font-family: @secondaryFontFamily;
+        color: @slate;
+        font-weight: 700;
+        font-size: 3rem;
+    }
+
+    > .graphic {
+        width: 7rem;
+        height: auto;
+        margin-bottom: 1rem;
+    }
+}
