@@ -1,4 +1,4 @@
-import * as dayjs from 'dayjs'
+import dayjs from "dayjs";
 import './styles.less'
 import ForecastProps from '../../types/forecastedDayType';
 import getWeatherGraphic from '../../functions/getWeatherType';
