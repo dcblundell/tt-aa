@@ -17,3 +17,7 @@ interface Forecast {
 }
 
 export default Forecast
+export type {
+    WeatherDescriptionProps,
+    WeatherBasicDataProps
+}

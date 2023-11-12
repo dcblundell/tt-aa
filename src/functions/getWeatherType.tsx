@@ -4,10 +4,15 @@ import Rain from "../components/Icons/Rain";
 import Sun from "../components/Icons/Sun";
 import TypesOfWeather from '../types/weatherTypes';
 
+// @Todo: Replace overuse of Rain here
 const WEATHER_TYPE_GRAPHICS = {
+    'Thunderstorm': Rain,
     'Clear': Sun,
     'Clouds': Clouds,
+    'Drizzle': Rain,
     'Rain': Rain,
+    'Atmosphere': Rain,
+    'Snow': Rain,
 }
 
 interface IconProps {

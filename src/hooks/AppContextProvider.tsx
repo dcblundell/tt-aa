@@ -18,13 +18,18 @@ function AppContextProvider(props: PropsWithChildren) {
     const [ weatherData, setWeatherData ] = useState({})
 
     useEffect(() => {
-        // Temp
-        setWeatherData(getWeatherForCity())
-
         // Language and units are supported by API
-        // getWeatherForCity(activeCity)
-        // .then(response => response.json())
-        // .then(json => setWeatherData(json))
+        async function updateWeatherData() {
+            await getWeatherForCity(activeCity)
+                .then(response => {
+                    setWeatherData(response)
+                })
+        }
+
+        updateWeatherData()
+            .catch(error => {
+                console.error(error)
+            });
     }, [activeCity])
 
     const initialState = {

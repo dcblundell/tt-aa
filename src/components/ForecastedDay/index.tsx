@@ -2,6 +2,7 @@ import * as dayjs from 'dayjs'
 import './styles.less'
 import ForecastProps from '../../types/forecastedDayType';
 import getWeatherGraphic from '../../functions/getWeatherType';
+import getFormattedTemperature from '../../functions/getFormattedTemperature';
 
 function ForecastedDay({ dt, date, main, weather }: ForecastProps) {
     return (
@@ -13,7 +14,7 @@ function ForecastedDay({ dt, date, main, weather }: ForecastProps) {
             {getWeatherGraphic(weather[0].main)}
 
             <span className="temperature">
-                {main.temp}&#176;
+                {getFormattedTemperature(main.temp)}&#176;
             </span>
         </div>
     )

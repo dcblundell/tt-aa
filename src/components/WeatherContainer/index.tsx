@@ -1,4 +1,5 @@
 
+import getFormattedTemperature from "../../functions/getFormattedTemperature";
 import getWeatherGraphic from "../../functions/getWeatherType";
 import { useAppContext } from "../../hooks/AppContextProvider"
 import forecastedDayType from "../../types/forecastedDayType";
@@ -13,11 +14,10 @@ END_DATE.setDate(END_DATE.getDate() + MAX_DAY_FORECAST);
 function WeatherContainer() {
     const { weatherData } = useAppContext();
 
-    if (!weatherData) {
-        return
+    // VERY basic loading state
+    if (!weatherData?.forecast) {
+        return 'Loading';
     }
-
-    console.log('weatherData', weatherData)
 
     const daysForecast: Array<forecastedDayType> = weatherData.forecast.reduce((filteredData: Array<forecastedDayType>, currentDay: forecastedDayType) => {
         currentDay = {
@@ -35,8 +35,6 @@ function WeatherContainer() {
         return filteredData
     }, []);
 
-    console.log('daysForecast', daysForecast)
-
     return (
         <section className="weather-container">
             <>
@@ -45,7 +43,7 @@ function WeatherContainer() {
                 <figure className="weather">
                     {getWeatherGraphic(weatherData.today.description)}
                     <figcaption className="report">
-                        <span className="temperature">{weatherData.today.temperature}&#176;</span>
+                        <span className="temperature">{getFormattedTemperature(weatherData.today.temperature)}&#176;</span>
                         <span className="description">{weatherData.today.description}</span>
                     </figcaption>
                 </figure>
