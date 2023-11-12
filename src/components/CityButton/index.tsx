@@ -10,8 +10,12 @@ interface CityButtonProps {
 function CityButton({ city }: CityButtonProps) {
     const { activeCity, setActiveCity } = useAppContext();
 
+    if (!activeCity || !setActiveCity) {
+        return
+    }
+
     function handleCitySelection() {
-        setActiveCity(city)
+        setActiveCity && setActiveCity(city)
     }
 
     return (

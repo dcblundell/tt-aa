@@ -1,21 +1,20 @@
 import { createContext, useState, useContext, useEffect, PropsWithChildren } from 'react';
 import { DEFAULT_CITY } from '../definitions/cities';
 import getWeatherForCity from '../functions/getWeatherForCity';
+import City from '../types/city';
+import AppContextState from '../types/appContextState';
 
 
-const AppContext = createContext({
+interface AppContextProps {
+    weatherData: AppContextState
+}
+
+const AppContext = createContext<AppContextProps>({
     weatherData: {}
 });
 
-// interface AppContextState {
-//     activeCity: string;
-//     setActiveCity: (city: string) => void,
-//     weatherData: string,
-//     setWeatherData: (weatherData: string) => void
-// }
-
 function AppContextProvider(props: PropsWithChildren) {
-    const [ activeCity, setActiveCity ] = useState(DEFAULT_CITY)
+    const [ activeCity, setActiveCity ] = useState<City>(DEFAULT_CITY)
     const [ weatherData, setWeatherData ] = useState({})
 
     useEffect(() => {
@@ -43,7 +42,7 @@ function AppContextProvider(props: PropsWithChildren) {
 }
 
 function useAppContext() {
-    return useContext(AppContext);
+    return useContext(AppContext) as AppContextState;
 }
 
 export { AppContextProvider, useAppContext }

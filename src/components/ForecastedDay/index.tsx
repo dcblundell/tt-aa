@@ -20,8 +20,8 @@ function ForecastedDay({ forecast }: ForecastedDayProps) {
 }
 
 function getFormattedDate(dateString: Date) {
-    return dayjs(dateString).format('YYYY-MM-DD')
-    // .format('ddd')
+    return dayjs(dateString).format('ddd');
+    // .format('YYYY-MM-DD')
 }
 
 export default ForecastedDay

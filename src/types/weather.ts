@@ -1,5 +1,10 @@
+type TypesOfWeather =
+    | 'Clear'
+    | 'Clouds'
+    | 'Rain';
+
 interface WeatherDescriptionProps {
-    main: string
+    main: TypesOfWeather
 }
 
 interface WeatherBasicDataProps {
@@ -18,6 +23,7 @@ interface ForecastedDayProps {
 }
 
 export type {
+    TypesOfWeather,
     WeatherDescriptionProps,
     WeatherBasicDataProps,
     ForecastProps,
