@@ -23,9 +23,7 @@ function getWeatherForToday() {
 function getForecast() {
     const { list } = forecast;
 
-    return {
-        list
-    }
+    return list
 }
 
 export default getWeatherForCity;

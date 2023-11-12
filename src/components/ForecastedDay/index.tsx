@@ -1,19 +1,21 @@
 import * as dayjs from 'dayjs'
 import './styles.less'
-import { ForecastedDayProps } from '../../types/weather';
+import ForecastProps from '../../types/forecastedDay';
 import getWeatherGraphic from '../../functions/getWeatherType';
 
-function ForecastedDay({ forecast }: ForecastedDayProps) {
+function ForecastedDay(props: ForecastProps) {
+    const { dt, date, main, weather } = props;
+
     return (
-        <div className="forecasted-day" key={forecast.dt}>
+        <div className="forecasted-day" key={dt}>
             <span className="day-label">
-                {getFormattedDate(forecast.date)}
+                {getFormattedDate(date)}
             </span>
 
-            {getWeatherGraphic(forecast.weather[0].main)}
+            {getWeatherGraphic(weather[0].main)}
 
             <span className="temperature">
-                {forecast.main.temp}&#176;
+                {main.temp}&#176;
             </span>
         </div>
     )

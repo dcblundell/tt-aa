@@ -1,31 +1,3 @@
-type TypesOfWeather =
-    | 'Clear'
-    | 'Clouds'
-    | 'Rain';
+type TypesOfWeather = 'Clouds' | 'Rain' | 'Clear';
 
-interface WeatherDescriptionProps {
-    main: TypesOfWeather
-}
-
-interface WeatherBasicDataProps {
-    temp: string
-}
-
-interface ForecastProps {
-    dt: number;
-    date: Date;
-    weather: Array<WeatherDescriptionProps>;
-    main: WeatherBasicDataProps
-}
-
-interface ForecastedDayProps {
-    forecast: ForecastProps
-}
-
-export type {
-    TypesOfWeather,
-    WeatherDescriptionProps,
-    WeatherBasicDataProps,
-    ForecastProps,
-    ForecastedDayProps
-}
+export default TypesOfWeather

@@ -1,6 +1,7 @@
 
 import getWeatherGraphic from "../../functions/getWeatherType";
 import { useAppContext } from "../../hooks/AppContextProvider"
+import { Forecast } from "../../types/weatherData";
 import ForecastedDay from "../ForecastedDay";
 import './styles.less'
 
@@ -12,18 +13,18 @@ END_DATE.setDate(END_DATE.getDate() + MAX_DAY_FORECAST);
 function WeatherContainer() {
     const { weatherData } = useAppContext();
 
-    const daysForecast = weatherData?.forecast?.list
-        .reduce((filteredData, currentDay) => {
+    console.log(weatherData)
+
+    const daysForecast = weatherData?.forecast?.list?
+        .reduce((filteredData: Array<Forecast>, currentDay: Forecast) => {
             currentDay = {
                 ...currentDay,
                 date: new Date(currentDay.dt_txt)
             }
 
-            console.log(currentDay.date, END_DATE, currentDay.date < END_DATE)
-
             if (currentDay.date.getDate() !== TODAYS_DATE.getDate() &&
                 currentDay.date < END_DATE &&
-                !filteredData?.some(day => day.date.getDate() === currentDay.date.getDate())
+                !filteredData.some(day => day.date.getDate() === currentDay.date.getDate())
             ) {
                 filteredData.push(currentDay)
             }
@@ -31,7 +32,7 @@ function WeatherContainer() {
             return filteredData
         }, [])
 
-    console.log(daysForecast)
+    // console.log(daysForecast)
 
     return (
         <section className="weather-container">
